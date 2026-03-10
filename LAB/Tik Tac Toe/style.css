@@ -34,3 +34,16 @@ h1 {
   grid-template-rows: repeat(3, 100px);
   gap: 10px;
 }
+
+.cell {
+  background: white;
+  border: 2px solid #333;
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+  user-select: none;
+}
