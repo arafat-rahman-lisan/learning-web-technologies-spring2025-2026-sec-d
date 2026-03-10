@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Degree</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container small-form">
+    <h1>Degree</h1>
+    <form onsubmit="return validateDegreePage()">
+      <div class="form-row inline-group">
+        <label class="block">Degree</label>
+        <label><input type="checkbox" name="degree" value="SSC"> SSC</label>
+        <label><input type="checkbox" name="degree" value="HSC"> HSC</label>
+        <label><input type="checkbox" name="degree" value="BSc"> BSc</label>
+        <label><input type="checkbox" name="degree" value="MSc"> MSc</label>
+      </div>
+      <div class="actions">
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset" onclick="clearMessage('msg')">
+      </div>
+      <div class="message" id="msg"></div>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

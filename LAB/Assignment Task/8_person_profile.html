@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Person Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>PERSON PROFILE</h1>
+    <form onsubmit="return validateForm()">
+      <table>
+        <tr>
+          <td>Name</td>
+          <td><input type="text" id="name" name="name"></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><input type="text" id="email" name="email"></td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td class="inline-group">
+            <label><input type="radio" name="gender" value="Male"> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
+          </td>
+        </tr>
+        <tr>
+          <td>Date of Birth</td>
+          <td>
+            <input class="dob" type="text" id="dd" maxlength="2" placeholder="dd"> /
+            <input class="dob" type="text" id="mm" maxlength="2" placeholder="mm"> /
+            <input class="dob" type="text" id="yyyy" maxlength="4" placeholder="yyyy">
+          </td>
+        </tr>
+        <tr>
+          <td>Blood Group</td>
+          <td>
+            <select id="bloodGroup">
+              <option value="">Select</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Degree</td>
+          <td class="inline-group">
+            <label><input type="checkbox" name="degree" value="SSC"> SSC</label>
+            <label><input type="checkbox" name="degree" value="HSC"> HSC</label>
+            <label><input type="checkbox" name="degree" value="BSc"> BSc</label>
+            <label><input type="checkbox" name="degree" value="MSc"> MSc</label>
+          </td>
+        </tr>
+        <tr>
+          <td>User ID</td>
+          <td><input type="text" id="userId" name="userId"></td>
+        </tr>
+        <tr>
+          <td>Photo</td>
+          <td><input type="file" id="photo" name="photo"></td>
+        </tr>
+      </table>
+
+      <div class="actions">
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset" onclick="clearMessage('messageBox')">
+      </div>
+
+      <div class="message" id="messageBox"></div>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
