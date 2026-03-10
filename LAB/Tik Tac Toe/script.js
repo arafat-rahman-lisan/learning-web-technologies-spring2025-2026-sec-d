@@ -91,6 +91,54 @@ function switchPlayer()
 
 }
 
+function checkWinner()
+{
+  for (let i = 0; i < winningCombinations.length; i++)
+  {
+    let a = winningCombinations[i][0];
+    let b = winningCombinations[i][1];
+    let c = winningCombinations[i][2];
+
+    if (
+      boardState[a] !== "" &&
+      boardState[a] === boardState[b] &&
+      boardState[a] === boardState[c]
+    )
+    {
+      cells[a].classList.add("winner");
+      cells[b].classList.add("winner");
+      cells[c].classList.add("winner");
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function checkDraw()
+{
+  for (let i = 0; i < boardState.length; i++)
+  {
+    if (boardState[i] === "")
+    {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function resetGame()
+{
+  boardState = ["", "", "", "", "", "", "", "", ""];
+  currentPlayer = "X";
+  gameActive = true;
+  statusText.textContent = "Current Player: X";
+  createBoard();
+}
+
+resetBtn.addEventListener("click", resetGame);
+
 
 createBoard();
 
