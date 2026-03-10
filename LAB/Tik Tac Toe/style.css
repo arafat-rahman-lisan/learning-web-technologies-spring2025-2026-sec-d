@@ -61,6 +61,22 @@ h1 {
   animation: pop 0.2s ease;
 }
 
+.winner {
+  background: #90ee90 !important;
+  color: #000;
+}
+
+
+@keyframes pop 
+{
+  0% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 button {
   margin-top: 15px;
   padding: 10px 20px;
