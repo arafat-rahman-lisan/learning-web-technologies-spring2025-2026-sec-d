@@ -22,11 +22,13 @@ const winningCombinations = [
   [2, 4, 6]
 ];
 
-function createBoard() {
+function createBoard() 
+{
  board.innerHTML = "";
  cells = [];
 
- for (let i = 0; i < 9; i++) {
+ for (let i = 0; i < 9; i++) 
+  {
   const cell = document.createElement("div");
   cell.classList.add("cell");
   cell.setAttribute("data-index", i);
@@ -36,3 +38,17 @@ function createBoard() {
  }
 }
 
+function handleCellClick(event) 
+{
+  const clickedCell = event.target;
+  const index = clickedCell.getAttribute("data-index");
+
+  if (boardState[index] !== "" || !gameActive) 
+  {
+    return;
+  }
+
+  boardState[index] = currentPlayer;
+  clickedCell.textContent = currentPlayer;
+  clickedCell.classList.add("taken", "animate");
+}

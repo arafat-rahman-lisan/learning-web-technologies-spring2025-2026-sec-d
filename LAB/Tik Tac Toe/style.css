@@ -47,3 +47,17 @@ h1 {
   transition: 0.3s ease;
   user-select: none;
 }
+
+
+.cell:hover {
+  background: #eaeaea;
+}
+
+.cell.taken {
+  cursor: not-allowed;
+}
+
+.cell.animate {
+  animation: pop 0.2s ease;
+}
+
