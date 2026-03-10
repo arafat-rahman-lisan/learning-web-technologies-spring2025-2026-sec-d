@@ -51,7 +51,46 @@ function handleCellClick(event)
   boardState[index] = currentPlayer;
   clickedCell.textContent = currentPlayer;
   clickedCell.classList.add("taken", "animate");
+
+
+ if (checkWinner())
+  {
+    statusText.textContent = "Player " + currentPlayer + " Wins!";
+    gameActive = false;
+
+    if (currentPlayer === "X")
+    {
+      xScore = xScore + 1;
+      xScoreText.textContent = xScore;
+    }
+    else
+    {
+      oScore = oScore + 1;
+      oScoreText.textContent = oScore;
+    }
+
+    return;
+  }
+
+  switchPlayer();
 }
+
+function switchPlayer()
+{
+  if (currentPlayer === "X")
+  {
+    currentPlayer = "O";
+  }
+  else
+  {
+    currentPlayer = "X";
+  }
+
+  statusText.textContent = "Current Player: " + currentPlayer;
+
+
+}
+
 
 createBoard();
 
