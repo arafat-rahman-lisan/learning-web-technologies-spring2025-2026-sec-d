@@ -61,3 +61,17 @@ h1 {
   animation: pop 0.2s ease;
 }
 
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+button:hover {
+  background: #555;
+}

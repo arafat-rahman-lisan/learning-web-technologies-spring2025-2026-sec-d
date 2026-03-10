@@ -52,3 +52,7 @@ function handleCellClick(event)
   clickedCell.textContent = currentPlayer;
   clickedCell.classList.add("taken", "animate");
 }
+
+createBoard();
+
+
