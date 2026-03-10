@@ -22,17 +22,5 @@ const winningCombinations = [
   [2, 4, 6]
 ];
 
-function createBoard() {
-  board.innerHTML = "";
-  cells = [];
 
-  for (let i = 0; i < 9; i++) {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
-    cell.setAttribute("data-index", i);
-    cell.addEventListener("click", handleCellClick);
-    board.appendChild(cell);
-    cells.push(cell);
-  }
-}
 
