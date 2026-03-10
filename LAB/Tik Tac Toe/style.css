@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 30px;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.status {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.scoreboard {
+  margin: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.board {
+  width: 330px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+}
