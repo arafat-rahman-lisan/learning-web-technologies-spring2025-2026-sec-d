@@ -234,10 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>ASSESSMENT TASK</h2>
 
     <div class="task-block">
-        <div class="task-title">
-            <strong>1.</strong>
-            &nbsp; Design the following HTML form and perform following validations
-        </div>
+
 
         <?php if (!empty($loginErrors)): ?>
             <div class="error-box">
