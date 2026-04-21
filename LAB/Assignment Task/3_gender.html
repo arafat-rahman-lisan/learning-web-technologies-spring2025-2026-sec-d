@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gender</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container small-form">
+    <h1>Gender</h1>
+    <form onsubmit="return validateGenderPage()">
+      <div class="form-row inline-group">
+        <label class="block">Gender</label>
+        <label><input type="radio" name="gender" value="Male"> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+        <label><input type="radio" name="gender" value="Other"> Other</label>
+      </div>
+      <div class="actions">
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset" onclick="clearMessage('msg')">
+      </div>
+      <div class="message" id="msg"></div>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
