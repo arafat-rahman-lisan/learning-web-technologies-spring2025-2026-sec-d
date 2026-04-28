@@ -41,7 +41,7 @@
                 <td>
                     <a href="edit.php?id=<?php echo $user['id']; ?>">EDIT</a> |
                     <a href="Details.php?id=<?php echo $user['id']; ?>">Details</a> |
-                    <a href="delete.php?id=<?php echo $user['id']; ?>">Delete</a>
+                    <a href="Delete.php?id=<?php echo $user['id']; ?>">Delete</a>
                 </td>
             </tr>
         <?php } ?>
