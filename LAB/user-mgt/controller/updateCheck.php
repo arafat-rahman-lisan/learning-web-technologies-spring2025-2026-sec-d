@@ -5,8 +5,8 @@
         $id = $_POST['id'];
         $username = trim($_POST['username']);
         $email = trim($_POST['email']);
-
-        if ($id == "" || $username == "" || $email == "") {
+        i
+        f ($id == "" || $username == "" || $email == "") {
             echo "ID/Username/Email cannot be empty!";
             exit;
         }
