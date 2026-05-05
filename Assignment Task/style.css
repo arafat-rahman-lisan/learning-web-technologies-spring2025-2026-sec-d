@@ -1,0 +1,102 @@
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:#f4f4f4;
+  padding:30px 0;
+}
+
+.container{
+  width:450px;
+  margin:0 auto;
+  background:#fff;
+  border:1px solid #999;
+  padding:20px;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:20px;
+  font-size:26px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+td{
+  border:1px solid #999;
+  padding:10px;
+  vertical-align:middle;
+}
+
+td:first-child{
+  width:130px;
+  font-weight:bold;
+}
+
+input[type="text"],
+select{
+  width:95%;
+  padding:6px;
+}
+
+.dob{
+  width:55px !important;
+  text-align:center;
+}
+
+.actions{
+  text-align:right;
+  margin-top:15px;
+}
+
+.actions input{
+  padding:6px 12px;
+  margin-left:8px;
+}
+
+.message{
+  margin-top:15px;
+  border:1px solid #999;
+  background:#fafafa;
+  padding:10px;
+  min-height:45px;
+  color:red;
+}
+
+.success{
+  color:green;
+}
+
+.inline-group label{
+  margin-right:10px;
+}
+
+.small-form{
+  width:420px;
+}
+
+.small-form .form-row{
+  margin-bottom:15px;
+}
+
+.small-form label.block{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+
+.small-form input[type="text"],
+.small-form select{
+  width:100%;
+}
+
+.small-form .message{
+  min-height:40px;
+}

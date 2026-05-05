@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Picture</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container small-form">
+    <h1>Profile Picture</h1>
+    <form onsubmit="return validatePicturePage()">
+      <div class="form-row">
+        <label class="block" for="userId">User ID</label>
+        <input type="text" id="userId" name="userId">
+      </div>
+      <div class="form-row">
+        <label class="block" for="photo">Picture</label>
+        <input type="file" id="photo" name="photo">
+      </div>
+      <div class="actions">
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset" onclick="clearMessage('msg')">
+      </div>
+      <div class="message" id="msg"></div>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Form Lab</title>
+</head>
+<body>
+
+<h3>WEB TECHNOLOGIES</h3>
+
+<table width="100%">
+  <tr>
+    <td>Type</td>
+    <td>: HTML-FORM</td>
+    <td align="right"><b>LAB</b></td>
+  </tr>
+
+</table>
+
+<p><b>1.</b></p>
+<form onsubmit="return validateName()">
+  <label>Name</label><br>
+  <input type="text" id="name"><br><br>
+  <input type="submit" value="Submit">
+</form>
+<hr>
+<p><b>2.</b></p>
+<form onsubmit="return validateEmail()">
+  <label>Email</label><br>
+  <input type="email" id="email">
+  <span title="hint: sample@example.com">[i]</span>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<hr>
+
+<p><b>3.</b></p>
+<form onsubmit="return validateGender()">
+  <fieldset>
+    <legend>Gender</legend>
+
+    <input type="radio" name="gender" value = "male"> Male
+    <input type="radio" name="gender" value = "female"> Female
+    <input type="radio" name="gender" value = "other"> Other
+  </fieldset>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+<hr>
+
+<p><b>4.</b></p>
+<form onsubmit="return validateDOB()">
+  <fieldset>
+    <legend>Date of Birth</legend>
+
+    dd &nbsp;&nbsp;&nbsp; mm &nbsp;&nbsp;&nbsp; yyyy <br>
+
+    <input type="text" size="2" maxlength="2">
+    /
+    <input type="text" size="2" maxlength="2">
+    /
+    <input type="text" size="4" maxlength="4">
+
+    <br><br>
+    <input type="submit" value="Submit">
+  </fieldset>
+</form>
+
+<hr>
+
+<p align="right">PAGE 1|3</p>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container small-form">
+    <h1>Name</h1>
+    <form onsubmit="return validateNamePage()">
+      <div class="form-row">
+        <label class="block" for="name">Name</label>
+        <input type="text" id="name" name="name">
+      </div>
+      <div class="actions">
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset" onclick="clearMessage('msg')">
+      </div>
+      <div class="message" id="msg"></div>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

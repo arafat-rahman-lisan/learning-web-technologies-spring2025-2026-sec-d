@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 30px;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.status {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.scoreboard {
+  margin: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.board {
+  width: 330px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+}
+
+.cell {
+  background: white;
+  border: 2px solid #333;
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+  user-select: none;
+}
+
+
+.cell:hover {
+  background: #eaeaea;
+}
+
+.cell.taken {
+  cursor: not-allowed;
+}
+
+.cell.animate {
+  animation: pop 0.2s ease;
+}
+
+.winner {
+  background: #90ee90 !important;
+  color: #000;
+}
+
+
+@keyframes pop 
+{
+  0% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+button:hover {
+  background: #555;
+}
