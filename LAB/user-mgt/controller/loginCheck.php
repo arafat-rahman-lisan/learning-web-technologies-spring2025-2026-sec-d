@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start();//temporary...
 
 if (isset($_POST['submit'])) {
 

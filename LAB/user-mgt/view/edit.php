@@ -1,10 +1,16 @@
 <?php
     session_start();
+      //print_r($_SESSION);
+    if(!isset($_COOKIE['status'])){
+         header('location: login.php');
+    }
+
+
     $users = $_SESSION['users'];
     $id= $_GET['id'];
 
     $user =[];
-
+// search users 
     foreach ($users as $u ) {
         if($u['id'] == $id){
             $user = $u;

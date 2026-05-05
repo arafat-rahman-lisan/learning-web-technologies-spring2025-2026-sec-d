@@ -1,6 +1,11 @@
 <?php
     session_start();
+    //print_r($_SESSION);
+    if(!isset($_COOKIE['status'])){
+         header('location: login.php');
+    }
 
+    
     if (!isset($_SESSION['users'])) {
         $_SESSION['users'] = [
             ['id'=>1, 'username'=>'abc', 'email'=>'abc@aiub.edu'],
@@ -32,8 +37,10 @@
             <th>EMAIL</th>
             <th>ACTION</th>
         </tr>
+        
 
-        <?php foreach ($users as $user) { ?>
+        <?php foreach ($users as $user) //suppose 1 no user details is accessing from users array 
+             { ?> 
             <tr>
                 <td><?php echo $user['id']; ?></td>
                 <td><?php echo $user['username']; ?></td>
