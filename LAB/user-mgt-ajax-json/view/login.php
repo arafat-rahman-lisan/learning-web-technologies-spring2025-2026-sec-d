@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(isset($_SESSION['status']) && $_SESSION['status'] === true){
+        header('location: home.php');
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +16,7 @@
     <div class="box">
         <h1>Login</h1>
 
-        <p id="msg" class="message"></p>
+        <p id="message" class="message"></p>
 
         <form id="loginForm">
             <label>Username</label>
@@ -19,12 +26,10 @@
             <input type="password" id="password" name="password">
 
             <button type="submit">Login</button>
+            <a href="signup.php">Signup</a>
         </form>
-
-        <p>Do not have an account? <a href="signup.php">Signup</a></p>
-        <p class="hint">Demo user: abc | Password: 123</p>
     </div>
 
-    <script src="../ajax/login.js"></script>
+    <script src="../ajax/auth.js"></script>
 </body>
 </html>

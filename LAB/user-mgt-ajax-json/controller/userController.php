@@ -1,163 +1,163 @@
 <?php
-    require_once 'helpers.php';
-    require_login_json();
+    require_once('../model/userModel.php');
+    require_once('common.php');
 
-    $action = $_GET['action'] ?? $_POST['action'] ?? '';
-    $users = read_users();
+    requireLoginForAjax();
 
-    if ($action === 'list') {
-        $safeUsers = [];
+    $action = isset($_GET['action']) ? $_GET['action'] : '';
 
-        foreach ($users as $user) {
-            $safeUsers[] = remove_password($user);
-        }
-
-        json_response([
+    if($action == 'list'){
+        $users = getAllUser();
+        sendJson([
             'success' => true,
-            'users' => $safeUsers
+            'users' => $users
         ]);
     }
 
-    if ($action === 'get') {
-        $id = intval($_GET['id'] ?? 0);
+    if($action == 'details'){
+        $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-        foreach ($users as $user) {
-            if (intval($user['id']) === $id) {
-                json_response([
-                    'success' => true,
-                    'user' => remove_password($user)
-                ]);
-            }
-        }
-
-        json_response([
-            'success' => false,
-            'message' => 'User not found.'
-        ], 404);
-    }
-
-    if ($action === 'update') {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            json_response([
-                'success' => false,
-                'message' => 'Invalid request method.'
-            ], 405);
-        }
-
-        $updatedUser = get_json_user_from_post();
-
-        $id = intval($updatedUser['id'] ?? 0);
-        $username = trim($updatedUser['username'] ?? '');
-        $email = trim($updatedUser['email'] ?? '');
-
-        if ($id <= 0 || $username === '' || $email === '') {
-            json_response([
-                'success' => false,
-                'message' => 'ID, username and email are required.'
-            ]);
-        }
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            json_response([
-                'success' => false,
-                'message' => 'Please enter a valid email address.'
-            ]);
-        }
-
-        foreach ($users as $user) {
-            if (intval($user['id']) !== $id && $user['username'] === $username) {
-                json_response([
-                    'success' => false,
-                    'message' => 'Another user already has this username.'
-                ]);
-            }
-
-            if (intval($user['id']) !== $id && $user['email'] === $email) {
-                json_response([
-                    'success' => false,
-                    'message' => 'Another user already has this email.'
-                ]);
-            }
-        }
-
-        $found = false;
-
-        foreach ($users as $key => $user) {
-            if (intval($user['id']) === $id) {
-                $users[$key]['username'] = $username;
-                $users[$key]['email'] = $email;
-                $found = true;
-                break;
-            }
-        }
-
-        if (!$found) {
-            json_response([
-                'success' => false,
-                'message' => 'User not found.'
-            ], 404);
-        }
-
-        save_users($users);
-
-        json_response([
-            'success' => true,
-            'message' => 'User updated successfully.'
-        ]);
-    }
-
-    if ($action === 'delete') {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            json_response([
-                'success' => false,
-                'message' => 'Invalid request method.'
-            ], 405);
-        }
-
-        $id = intval($_POST['id'] ?? 0);
-
-        if ($id <= 0) {
-            json_response([
+        if($id <= 0){
+            sendJson([
                 'success' => false,
                 'message' => 'Invalid user ID.'
             ]);
         }
 
-        if (isset($_SESSION['current_user_id']) && intval($_SESSION['current_user_id']) === $id) {
-            json_response([
-                'success' => false,
-                'message' => 'You cannot delete the currently logged-in user.'
+        $user = getUserById($id);
+
+        if($user != false){
+            sendJson([
+                'success' => true,
+                'user' => $user
             ]);
         }
 
-        $found = false;
-
-        foreach ($users as $key => $user) {
-            if (intval($user['id']) === $id) {
-                unset($users[$key]);
-                $found = true;
-                break;
-            }
-        }
-
-        if (!$found) {
-            json_response([
-                'success' => false,
-                'message' => 'User not found.'
-            ], 404);
-        }
-
-        $users = array_values($users);
-        save_users($users);
-
-        json_response([
-            'success' => true,
-            'message' => 'User deleted successfully.'
+        sendJson([
+            'success' => false,
+            'message' => 'User not found.'
         ]);
     }
 
-    json_response([
+    if($action == 'add'){
+        $data = getJsonInput();
+
+        $username = isset($data['username']) ? trim($data['username']) : '';
+        $password = isset($data['password']) ? trim($data['password']) : '';
+        $email = isset($data['email']) ? trim($data['email']) : '';
+
+        if($username == '' || $password == '' || $email == ''){
+            sendJson([
+                'success' => false,
+                'message' => 'Username, password and email are required.'
+            ]);
+        }
+
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            sendJson([
+                'success' => false,
+                'message' => 'Please enter a valid email address.'
+            ]);
+        }
+
+        $status = addUser([
+            'username' => $username,
+            'password' => $password,
+            'email' => $email
+        ]);
+
+        if($status === 'duplicate'){
+            sendJson([
+                'success' => false,
+                'message' => 'Username already exists.'
+            ]);
+        }
+
+        if($status){
+            sendJson([
+                'success' => true,
+                'message' => 'User added successfully.'
+            ]);
+        }
+
+        sendJson([
+            'success' => false,
+            'message' => 'Failed to add user.'
+        ]);
+    }
+
+    if($action == 'update'){
+        $data = getJsonInput();
+
+        $id = isset($data['id']) ? intval($data['id']) : 0;
+        $username = isset($data['username']) ? trim($data['username']) : '';
+        $password = isset($data['password']) ? trim($data['password']) : '';
+        $email = isset($data['email']) ? trim($data['email']) : '';
+
+        if($id <= 0 || $username == '' || $email == ''){
+            sendJson([
+                'success' => false,
+                'message' => 'ID, username and email are required.'
+            ]);
+        }
+
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            sendJson([
+                'success' => false,
+                'message' => 'Please enter a valid email address.'
+            ]);
+        }
+
+        $user = [
+            'id' => $id,
+            'username' => $username,
+            'email' => $email,
+            'password' => $password
+        ];
+
+        $status = updateUser($user);
+
+        if($status){
+            sendJson([
+                'success' => true,
+                'message' => 'User updated successfully.'
+            ]);
+        }
+
+        sendJson([
+            'success' => false,
+            'message' => 'Failed to update user.'
+        ]);
+    }
+
+    if($action == 'delete'){
+        $data = getJsonInput();
+        $id = isset($data['id']) ? intval($data['id']) : 0;
+
+        if($id <= 0){
+            sendJson([
+                'success' => false,
+                'message' => 'Invalid user ID.'
+            ]);
+        }
+
+        $status = deleteUser($id);
+
+        if($status){
+            sendJson([
+                'success' => true,
+                'message' => 'User deleted successfully.'
+            ]);
+        }
+
+        sendJson([
+            'success' => false,
+            'message' => 'Failed to delete user.'
+        ]);
+    }
+
+    sendJson([
         'success' => false,
-        'message' => 'Invalid action.'
-    ], 400);
+        'message' => 'Invalid user action.'
+    ]);
 ?>

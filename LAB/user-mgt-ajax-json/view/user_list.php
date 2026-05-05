@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['status']) || $_SESSION['status'] !== true) {
+    if(!isset($_SESSION['status']) || $_SESSION['status'] !== true){
         header('location: login.php');
         exit;
     }
@@ -9,21 +9,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Management</title>
+    <title>User List</title>
     <link rel="stylesheet" href="../asset/css/style.css">
 </head>
 <body>
     <div class="wide-box">
-        <h1>User Management</h1>
+        <h1>All Users</h1>
+        <a href="home.php">Back</a> |
+        <a href="../controller/authController.php?action=logout">Logout</a>
 
-        <div class="top-nav">
-            <a href="home.php">Back Home</a>
-            <a href="../controller/logout.php">Logout</a>
-        </div>
+        <p id="message" class="message"></p>
 
-        <p id="msg" class="message"></p>
+        <h2 id="formTitle">Add User</h2>
+        <form id="userForm">
+            <input type="hidden" id="userId">
 
-        <table>
+            <label>Username</label>
+            <input type="text" id="username">
+
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Required for new user, optional while editing">
+
+            <label>Email</label>
+            <input type="email" id="email">
+
+            <button type="submit" id="saveBtn">Add User</button>
+            <button type="button" id="cancelBtn">Cancel Edit</button>
+        </form>
+
+        <h2>User List Loaded by AJAX</h2>
+        <table border="1" width="100%">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -34,29 +49,10 @@
             </thead>
             <tbody id="userTableBody">
                 <tr>
-                    <td colspan="4">Loading users...</td>
+                    <td colspan="4">Loading...</td>
                 </tr>
             </tbody>
         </table>
-
-        <div id="detailsBox" class="panel hidden"></div>
-
-        <div id="editBox" class="panel hidden">
-            <h2>Edit User</h2>
-            <form id="editForm">
-                <label>ID</label>
-                <input type="text" id="editId" readonly>
-
-                <label>Username</label>
-                <input type="text" id="editUsername">
-
-                <label>Email</label>
-                <input type="email" id="editEmail">
-
-                <button type="submit">Update</button>
-                <button type="button" onclick="hideEditBox()">Cancel</button>
-            </form>
-        </div>
     </div>
 
     <script src="../ajax/users.js"></script>

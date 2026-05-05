@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['status']) || $_SESSION['status'] !== true) {
+    if(!isset($_SESSION['status']) || $_SESSION['status'] !== true){
         header('location: login.php');
         exit;
     }
@@ -14,12 +14,9 @@
 </head>
 <body>
     <div class="box">
-        <h1>Welcome Home, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
-
-        <p>This page is protected. Only logged-in users can see it.</p>
-
-        <a class="btn-link" href="user_list.php">User Management</a>
-        <a class="btn-link danger" href="../controller/logout.php">Logout</a>
+        <h1>Welcome Home! <?php echo $_SESSION['username']; ?></h1>
+        <a href="user_list.php">User List</a> |
+        <a href="../controller/authController.php?action=logout">Logout</a>
     </div>
 </body>
 </html>
